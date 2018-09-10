@@ -10,14 +10,16 @@ module.exports = {
     getIntro: function() {
         return episodesJSON[episodesJSON.length - 1];
     },
-    getPossibleEpisodes: function () {
-        let episodes = {};
-        for (let i = 0; i < 5; i++) {
-            
-        }
+    getNextEpisode: function(episode) {
+        let index = findCurrentEpisodeInArray(episode);
+        if (index === 0) return undefined;
+        return episodesJSON[index - 1];
     },
-    getNextEpisode: function() {
-
+    getPreviousEpisode: function(episode) {
+        let index = findCurrentEpisodeInArray(episode);
+        // At episodesJSON.length - 1 is the intro so episodesJSON.length - 2 is the last playable episode
+        if (index === episodesJSON.length - 2) return undefined;
+        return episodesJSON[index + 1];
     },
     /**
      * Plays audiotrack and saves episode to DB as "currentEpisode"
@@ -33,4 +35,14 @@ module.exports = {
             .play(episode.uri, token);
         return this;
     }
+}
+function findCurrentEpisodeInArray(episode) {
+    episode = JSON.stringify(episode);
+    let index = 0;
+    for (let i = 0; i < episodesJSON.length; i++) {
+        if (JSON.stringify(episodesJSON[i]) === episode) {
+            index = i;
+        }
+    }
+    return index;
 }

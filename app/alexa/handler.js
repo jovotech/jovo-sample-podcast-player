@@ -1,5 +1,6 @@
 const Player = require('../player');
 const Util = require('../util');
+const Episodes = require('../episodes.json');
 
 module.exports = {
     /**
@@ -26,6 +27,7 @@ module.exports = {
             speech.addSayAsOrdinal(`${i + 1}`).addText(episodes[i].title).addBreak("100ms");
             episodesToSave.push(episodes[i]);
         }
+        speech.addT('CHOOSE_EPISODE');
         this.user().data.episodeList = episodesToSave;
         this.ask(speech);
     },
@@ -38,15 +40,24 @@ module.exports = {
         Player.alexaPlay.call(this, this.user().data.offset, episode, 'token').endSession();
     },
     'AMAZON.NextIntent': function() {
-        let episode = Player.getNextEpisode.call(this);
-        Player.alexaPlay.call(this, 0, episode, 'token').endSession();
+        let currentEpisode = this.user().data.currentEpisode;
+        let episode = Player.getNextEpisode(currentEpisode);
+        console.log(episode);
+        if (episode) {
+            Player.alexaPlay.call(this, 0, episode, 'token').endSession();
+        }
+        else {
+            this.tell(this.t('LAST_EPISODE'));
+        }
     },
     'AMAZON.PreviousIntent': function() {
-        let episode = Player.getPreviousEpisode.call(this);
+        let currentEpisode = this.user().data.currentEpisode;
+        let episode = Player.getPreviousEpisode(currentEpisode);
         Player.alexaPlay.call(this, 0, episode, 'token').endSession();
     },
     'AMAZON.StartOverIntent': function() {
-
+        let episode = this.user().data.currentEpisode;
+        Player.alexaPlay.call(this, 0, episode, 'token').endSession();
     },
     'AMAZON.PauseIntent': function () {
         this.alexaSkill().audioPlayer().stop();
@@ -68,8 +79,11 @@ module.exports = {
         'AudioPlayer.PlaybackNearlyFinished': function() {
             // Enqueue next episode and save epsiode object to DB
             let episode = Player.getNextEpisode.call(this);
-            this.user().data.nextEpisode = episode;
-            this.alexaSkill().audioPlayer().setExpectedPreviousToken('token').enqueue(episode.uri, 'token');
+            console.log(episode);
+            if (episode) {
+                this.user().data.nextEpisode = episode;
+                this.alexaSkill().audioPlayer().setExpectedPreviousToken('token').enqueue(episode.uri, 'token');
+            }
         },
 
         'AudioPlayer.PlaybackFinished': function() {
