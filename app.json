@@ -1,0 +1,24 @@
+{
+	"alexaSkill": {
+		"nlu": {
+			"name": "alexa"
+		},
+		"manifest": {
+			"apis": {
+				"custom": {
+					"interfaces": [
+						{
+							"type": "AUDIO_PLAYER"
+						}
+					]
+				}
+			}
+		}
+	},
+	"endpoint": "https://webhook.jovo.cloud/ed7c57e3-a03b-4806-9f8d-5398aa8398d3",
+	"googleAction": {
+		"nlu": {
+			"name": "dialogflow"
+		}
+	}
+}

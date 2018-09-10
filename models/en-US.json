@@ -1,0 +1,171 @@
+{
+	"invocation": "podcast test",
+	"intents": [
+		{
+			"name": "PlayIntent",
+			"phrases": [
+				"begin podcast",
+				"begin the podcast",
+				"begin playing the podcast",
+				"start podcast",
+				"start the podcast",
+				"start playing the podcast",
+				"play the podcast",
+				"to play",
+				"to begin podcast",
+				"to begin the podcast",
+				"to begin playing the podcast",
+				"to start podcast",
+				"to start the podcast",
+				"to start playing the podcast",
+				"to play the podcast"
+			]
+		},
+		{
+			"name": "FirstEpisodeIntent",
+			"phrases": [
+				"episode one",
+				"I want episode one",
+				"play episode one",
+				"start with episode one",
+				"I want to listen to the first episode"
+			]
+		},
+		{
+			"name": "ListIntent",
+			"phrases": [
+				"list episodes",
+				"list the episodes",
+				"I want the list",
+				"I want the list of episodes",
+				"episode list"
+			]
+		},
+		{
+			"name": "ChooseFromListIntent",
+			"phrases": [
+				"{ordinal}",
+				"{ordinal} one",
+				"{ordinal} episode",
+				"Play {ordinal}",
+				"Play {ordinal} one",
+				"Play {ordinal} episode",
+				"Play the {ordinal} one",
+				"Play the {ordinal} episode",
+				"I want the {ordinal} one",
+				"I choose the {ordinal} one",
+				"I want the {ordinal} episode",
+				"I choose the {ordinal} episode"
+			],
+			"inputs": [
+				{
+					"name": "ordinal",
+					"type": {
+						"alexa": "AlexaOrdinal",
+						"dialogflow": "@sys.ordinal"
+					}
+				}
+			]
+		}
+	],
+	"inputTypes": [
+		{
+			"name": "AlexaOrdinal",
+			"values": [
+				{
+					"value": "1",
+					"synonyms": [
+						"first",
+						"1st",
+						"1.",
+						"one"
+					]
+				},
+				{
+					"value": "2",
+					"synonyms": [
+						"second",
+						"2nd",
+						"2.",
+						"two"
+					]
+				},
+				{
+					"value": "3",
+					"synonyms": [
+						"third",
+						"3rd",
+						"3.",
+						"three"
+					]
+				},
+				{
+					"value": "4",
+					"synonyms": [
+						"fourth",
+						"4th",
+						"4.",
+						"four"
+					]
+				},
+				{
+					"value": "5",
+					"synonyms": [
+						"fifth",
+						"5th",
+						"5.",
+						"five"
+					]
+				}
+			]
+		}
+	],
+	"alexa": {
+		"interactionModel": {
+			"languageModel": {
+				"intents": [
+					{
+						"name": "AMAZON.CancelIntent",
+						"samples": []
+					},
+					{
+						"name": "AMAZON.HelpIntent",
+						"samples": []
+					},
+					{
+						"name": "AMAZON.StopIntent",
+						"samples": []
+					},
+					{
+						"name": "AMAZON.PauseIntent",
+						"samples": []
+					},
+					{
+						"name": "AMAZON.ResumeIntent",
+						"samples": []
+					}
+				]
+			}
+		}
+	},
+	"dialogflow": {
+		"intents": [
+			{
+				"name": "Default Fallback Intent",
+				"auto": true,
+				"webhookUsed": true,
+				"fallbackIntent": true
+			},
+			{
+				"name": "Default Welcome Intent",
+				"auto": true,
+				"webhookUsed": true,
+				"events": [
+					{
+						"name": "WELCOME"
+					}
+				]
+			}
+		]
+	}
+}
