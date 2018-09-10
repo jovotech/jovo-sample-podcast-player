@@ -21,9 +21,6 @@ const Util = require('./util.js');
 const Episodes = require('./episodes.json');
 const AlexaHandler = require('./alexa/handler.js');
 
-const SEC_TO_SKIP = 15;
-const MILLISEC_TO_SKIP = SEC_TO_SKIP * 1000;
-
 // =================================================================================
 // App Logic
 // =================================================================================
