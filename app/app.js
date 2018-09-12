@@ -27,28 +27,13 @@ const AlexaHandler = require('./alexa/handler.js');
 
 app.setHandler({
     'LAUNCH': function() {
-        // route user to the correct state
-        this.user().isNewUser() ? this.toIntent('NewUserLaunch') : this.toIntent('ExistingUserLaunch');
-    },
-    'NewUserLaunch': function() {
-            /**
-             * NOT in language model --> user can't trigger
-             * asks user if they want to listen to first episode or choose from a list.
-             */
-            let speech = this.speechBuilder().addAudio('https://www.jovo.tech/audio/DZ10zmca-free-intro.mp3').addT('NEW_USER');
-            this.ask(speech);
-    },
-    'ExistingUserLaunch': function() {
-        /**
-         * Asks user wether they want to continue where they left off or choose from a list.
-         * User either triggers ListIntent or AMAZON.ResumeIntent
-         */
-        let speech = this.speechBuilder().addAudio('https://www.jovo.tech/audio/DZ10zmca-free-intro.mp3').addT('EXISTING_USER');
+        let speech = this.speechBuilder().addAudio(`${Player.getIntro().uri}`).addT('EXISTING_USER');
         this.ask(speech);
     },
-    'END': function() {
-
-    }
+    'NEW_USER': function() {
+        let speech = this.speechBuilder().addAudio(`${Player.getIntro().uri}`).addT('NEW_USER');
+        this.ask(speech);
+    },
 });
 
 app.setAlexaHandler(AlexaHandler);
