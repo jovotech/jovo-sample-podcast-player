@@ -1,26 +1,26 @@
 [
     {
         "title": "Episode Five",
-        "uri": "https://www.jovo.tech/audio/wwpMUP2c-haikyuu-opening.mp3"
+        "uri": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
     },
     {
         "title": "Episode Four",
-        "uri": "https://www.jovo.tech/audio/wwpMUP2c-haikyuu-opening.mp3"
+        "uri": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
     },
     {
         "title": "Episode Three",
-        "uri": "https://www.jovo.tech/audio/wwpMUP2c-haikyuu-opening.mp3"
+        "uri": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
     },
     {
         "title": "Episode Two",
-        "uri": "https://www.jovo.tech/audio/wwpMUP2c-haikyuu-opening.mp3"
+        "uri": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
     },
     {
         "title": "Episode One",
-        "uri": "https://www.jovo.tech/audio/wwpMUP2c-haikyuu-opening.mp3"
+        "uri": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
     },
     {
         "title": "Intro",
-        "uri": "https://www.jovo.tech/audio/DZ10zmca-free-intro.mp3"
+        "uri": "https://s3.amazonaws.com/audio.test.5/FREE+-+INTRO.mp3"
     }
 ]
