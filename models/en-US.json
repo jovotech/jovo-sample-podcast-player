@@ -38,7 +38,9 @@
 				"list the episodes",
 				"I want the list",
 				"I want the list of episodes",
-				"episode list"
+				"episode list",
+				"Can I get the list of episodes",
+				"Can I have the episode list"
 			]
 		},
 		{
@@ -66,6 +68,76 @@
 					}
 				}
 			]
+		},
+		{
+			"name": "NextIntent",
+			"alexa": {
+				"name": "AMAZON.NextIntent"
+			},
+			"phrases": [
+				"skip",
+				"next",
+				"skip the episode",
+				"skip to next episode",
+				"skip to the next episode",
+				"next episode"
+			]
+		},
+		{
+			"name": "PreviousIntent",
+			"alexa": {
+				"name": "AMAZON.PreviousIntent"
+			},
+			"phrases": [
+				"go back",
+				"skip back",
+				"back",
+				"back up",
+				"previous episode",
+				"go to the previous episode",
+				"skip back to previous episode",
+				"go back to the previous episode",
+				"the previous episode"
+			]
+		},
+		{
+			"name": "ResumeIntent",
+			"alexa": {
+				"name": "AMAZON.ResumeIntent"
+			},
+			"phrases": [
+				"resume",
+				"continue",
+				"resume where I left off",
+				"continue where I left off",
+				"I want to continue",
+				"I want to resume",
+				"I want to resume where I left off",
+				"I want to continue where I left off"
+			]
+		},
+		{
+			"name": "StopIntent",
+			"phrases": [
+				"stop",
+				"cancel",
+				"please stop",
+				"stop that",
+				"stop it",
+				"cancel that",
+				"can you stop that please",
+				"would you stop please"
+			],
+			"alexa": {
+				"name": "AMAZON.StopIntent"
+			},
+			"dialogflow": {
+				"events": [
+					{
+						"name": "actions_intent_CANCEL"
+					}
+				]
+			}
 		}
 	],
 	"inputTypes": [
@@ -135,13 +207,9 @@
 					{
 						"name": "AMAZON.StopIntent",
 						"samples": []
-					},
+					},	
 					{
 						"name": "AMAZON.PauseIntent",
-						"samples": []
-					},
-					{
-						"name": "AMAZON.ResumeIntent",
 						"samples": []
 					}
 				]
