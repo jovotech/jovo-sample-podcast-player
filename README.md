@@ -7,14 +7,7 @@
 <a href="https://github.com/jovotech/jovo-cli"><strong>CLI </strong></a> - <a href="https://github.com/jovotech/jovo-framework-nodejs/blob/master/CONTRIBUTING.md"><strong>Contributing</strong></a> - <a href="https://twitter.com/jovotech"><strong>Twitter</strong></a></p>
 <br/>
 
-# Template: Hello World
+# NOTE
 
-Jovo Sample Voice App with a simple "Hello World!" + asking for the user's name. This is the default template for the `jovo new` command:
-
-```sh
-$ jovo new <directory>
-
-## Alternative
-$ jovo new <directory> --template helloworld
-```
+After `jovo build` you have to delete the sample phrases from the following intents in the alexa model before deploying: `AMAZON.NextIntent`, `AMAZON.PreviousIntent`, `AMAZON.ResumeIntent`, `AMAZON.StopIntent`
 
