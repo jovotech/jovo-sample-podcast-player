@@ -34,6 +34,16 @@ module.exports = {
             .setOffsetInMilliseconds(offset)
             .play(episode.uri, token);
         return this;
+    },
+    /**
+     * @param {Object} episode object containing uri and title
+     * @returns
+     */
+    googlePlay: function(episode) {
+        this.user().data.currentEpisode = episode;
+        this.googleAction().audioPlayer().play(episode.uri, episode.title);
+        this.googleAction().showSuggestionChips(['stop', 'start over']);
+        this.ask('Enjoy');
     }
 }
 function findCurrentEpisodeInArray(episode) {
