@@ -42,7 +42,6 @@ module.exports = {
     'AMAZON.NextIntent': function() {
         let currentEpisode = this.user().data.currentEpisode;
         let episode = Player.getNextEpisode(currentEpisode);
-        console.log(episode);
         if (episode) {
             Player.alexaPlay.call(this, 0, episode, 'token').endSession();
         }
@@ -53,7 +52,12 @@ module.exports = {
     'AMAZON.PreviousIntent': function() {
         let currentEpisode = this.user().data.currentEpisode;
         let episode = Player.getPreviousEpisode(currentEpisode);
-        Player.alexaPlay.call(this, 0, episode, 'token').endSession();
+        if (episode) {
+            Player.alexaPlay.call(this, 0, episode, 'token').endSession();
+        }
+        else {
+            this.tell(this.t('FIRST_EPISODE'));
+        }
     },
     'AMAZON.StartOverIntent': function() {
         let episode = this.user().data.currentEpisode;
@@ -71,7 +75,6 @@ module.exports = {
         this.alexaSkill().audioPlayer().stop();
         this.tell(this.t('PAUSE'));
     },
-
     'AUDIOPLAYER': {
         'AudioPlayer.PlaybackStarted': function() {
             this.endSession();
@@ -79,7 +82,6 @@ module.exports = {
         'AudioPlayer.PlaybackNearlyFinished': function() {
             // Enqueue next episode and save epsiode object to DB
             let episode = Player.getNextEpisode.call(this);
-            console.log(episode);
             if (episode) {
                 this.user().data.nextEpisode = episode;
                 this.alexaSkill().audioPlayer().setExpectedPreviousToken('token').enqueue(episode.uri, 'token');
@@ -99,5 +101,23 @@ module.exports = {
         'AudioPlayer.PlaybackFailed': function() {
             this.endSession();
         }
-    }
+    },
+    'AMAZON.LoopOffIntent': function() {
+        this.tell(this.t('NOT_IMPLEMENTED'));
+    },
+    'AMAZON.LoopOnIntent': function() {
+        this.tell(this.t('NOT_IMPLEMENTED'));
+    },
+    'AMAZON.LoopOffIntent': function() {
+        this.tell(this.t('NOT_IMPLEMENTED'));
+    },
+    'AMAZON.RepeatIntent': function() {
+        this.tell(this.t('NOT_IMPLEMENTED'));
+    },
+    'AMAZON.ShuffleOffIntent': function() {
+        this.tell(this.t('NOT_IMPLEMENTED'));
+    },
+    'AMAZON.ShuffleOnIntent': function() {
+        this.tell(this.t('NOT_IMPLEMENTED'));
+    },
 }
