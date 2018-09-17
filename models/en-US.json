@@ -72,7 +72,8 @@
 		{
 			"name": "NextIntent",
 			"alexa": {
-				"name": "AMAZON.NextIntent"
+				"name": "AMAZON.NextIntent",
+				"samples": []
 			},
 			"phrases": [
 				"skip",
@@ -86,7 +87,8 @@
 		{
 			"name": "PreviousIntent",
 			"alexa": {
-				"name": "AMAZON.PreviousIntent"
+				"name": "AMAZON.PreviousIntent",
+				"samples": []
 			},
 			"phrases": [
 				"go back",
@@ -103,7 +105,8 @@
 		{
 			"name": "ResumeIntent",
 			"alexa": {
-				"name": "AMAZON.ResumeIntent"
+				"name": "AMAZON.ResumeIntent",
+				"samples": []
 			},
 			"phrases": [
 				"resume",
@@ -129,7 +132,8 @@
 				"would you stop please"
 			],
 			"alexa": {
-				"name": "AMAZON.StopIntent"
+				"name": "AMAZON.StopIntent",
+				"samples": []
 			},
 			"dialogflow": {
 				"events": [
@@ -204,10 +208,6 @@
 						"name": "AMAZON.HelpIntent",
 						"samples": []
 					},
-					{
-						"name": "AMAZON.StopIntent",
-						"samples": []
-					},	
 					{
 						"name": "AMAZON.PauseIntent",
 						"samples": []
