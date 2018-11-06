@@ -4,8 +4,7 @@
   "description": "A sample voice app that works with the Jovo framework",
   "main": "index.js",
   "dependencies": {
-    "jovo-cli": "^1.2.0",
-    "jovo-framework": "^1.4.9"
+    "jovo-framework": "^1.4.15"
   },
   "devDependencies": {},
   "scripts": {

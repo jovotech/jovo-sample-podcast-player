@@ -1,24 +1,66 @@
 {
-	"invocation": "podcast test",
+	"invocation": "my test app",
 	"intents": [
 		{
-			"name": "PlayIntent",
+			"name": "NextIntent",
+			"alexa": {
+				"name": "AMAZON.NextIntent",
+				"samples": []
+			},
 			"phrases": [
-				"begin podcast",
-				"begin the podcast",
-				"begin playing the podcast",
-				"start podcast",
-				"start the podcast",
-				"start playing the podcast",
-				"play the podcast",
-				"to play",
-				"to begin podcast",
-				"to begin the podcast",
-				"to begin playing the podcast",
-				"to start podcast",
-				"to start the podcast",
-				"to start playing the podcast",
-				"to play the podcast"
+				"skip",
+				"next",
+				"next one",
+				"skip please",
+				"next one please",
+				"skip the episode",
+				"skip to next episode",
+				"skip to the next episode",
+				"next episode",
+				"would like the next episode",
+				"I would like the next episode",
+				"I would like to listen to the next episode"
+			]
+		},
+		{
+			"name": "PreviousIntent",
+			"alexa": {
+				"name": "AMAZON.PreviousIntent",
+				"samples": []
+			},
+			"phrases": [
+				"go back",
+				"skip back",
+				"back",
+				"back up",
+				"previous episode",
+				"go to the previous episode",
+				"skip back to previous episode",
+				"go back to the previous episode",
+				"the previous episode",
+				"I'd like to listen to the previous episode",
+				"I would like to listen to the previous episode",
+				"go back please",
+				"skip back please",
+				"previous episode please",
+				"skip back to the previous episode please"
+			]
+		},
+		{
+			"name": "LatestEpisodeIntent",
+			"phrases": [
+				"latest episode",
+				"new episode",
+				"the latest episode",
+				"the new episode",
+				"I want the latest episode",
+				"I want to listen to the latest episode",
+				"I would prefer the latest one",
+				"play the latest episode",
+				"play the new episode",
+				"I would like to listen to the latest episode",
+				"stream the latest episode",
+				"stream the new episode"
 			]
 		},
 		{
@@ -29,6 +71,34 @@
 				"play episode one",
 				"start with episode one",
 				"I want to listen to the first episode"
+			]
+		},
+		{
+			"name": "ChooseFromListIntent",
+			"phrases": [
+				"{ordinal}",
+				"{ordinal} one please",
+				"{ordinal} one",
+				"{ordinal} episode",
+				"Play the {ordinal}",
+				"Play the {ordinal} one",
+				"Play the {ordinal} episode",
+				"Play the {ordinal} one",
+				"Play the {ordinal} episode",
+				"I want the {ordinal} one",
+				"I choose the {ordinal} one",
+				"I want the {ordinal} episode",
+				"I choose the {ordinal} episode",
+				"stream the {ordinal} one"
+			],
+			"inputs": [
+				{
+					"name": "ordinal",
+					"type": {
+						"alexa": "ordinal",
+						"dialogflow": "@sys.ordinal"
+					}
+				}
 			]
 		},
 		{
@@ -49,65 +119,6 @@
 			]
 		},
 		{
-			"name": "ChooseFromListIntent",
-			"phrases": [
-				"{ordinal}",
-				"{ordinal} one",
-				"{ordinal} episode",
-				"Play {ordinal}",
-				"Play {ordinal} one",
-				"Play {ordinal} episode",
-				"Play the {ordinal} one",
-				"Play the {ordinal} episode",
-				"I want the {ordinal} one",
-				"I choose the {ordinal} one",
-				"I want the {ordinal} episode",
-				"I choose the {ordinal} episode"
-			],
-			"inputs": [
-				{
-					"name": "ordinal",
-					"type": {
-						"alexa": "AlexaOrdinal",
-						"dialogflow": "@sys.ordinal"
-					}
-				}
-			]
-		},
-		{
-			"name": "NextIntent",
-			"alexa": {
-				"name": "AMAZON.NextIntent",
-				"samples": []
-			},
-			"phrases": [
-				"skip",
-				"next",
-				"skip the episode",
-				"skip to next episode",
-				"skip to the next episode",
-				"next episode"
-			]
-		},
-		{
-			"name": "PreviousIntent",
-			"alexa": {
-				"name": "AMAZON.PreviousIntent",
-				"samples": []
-			},
-			"phrases": [
-				"go back",
-				"skip back",
-				"back",
-				"back up",
-				"previous episode",
-				"go to the previous episode",
-				"skip back to previous episode",
-				"go back to the previous episode",
-				"the previous episode"
-			]
-		},
-		{
 			"name": "ResumeIntent",
 			"alexa": {
 				"name": "AMAZON.ResumeIntent",
@@ -125,33 +136,23 @@
 			]
 		},
 		{
-			"name": "StopIntent",
-			"phrases": [
-				"stop",
-				"cancel",
-				"please stop",
-				"stop that",
-				"stop it",
-				"cancel that",
-				"can you stop that please",
-				"would you stop please"
-			],
+			"name": "HelpIntent",
 			"alexa": {
-				"name": "AMAZON.StopIntent",
+				"name": "AMAZON.HelpIntent",
 				"samples": []
 			},
-			"dialogflow": {
-				"events": [
-					{
-						"name": "actions_intent_CANCEL"
-					}
-				]
-			}
+			"phrases": [
+				"help",
+				"help me",
+				"can you help me",
+				"help please",
+				"what can I do"
+			]
 		}
 	],
 	"inputTypes": [
 		{
-			"name": "AlexaOrdinal",
+			"name": "ordinal",
 			"values": [
 				{
 					"value": "1",
@@ -188,15 +189,6 @@
 						"4.",
 						"four"
 					]
-				},
-				{
-					"value": "5",
-					"synonyms": [
-						"fifth",
-						"5th",
-						"5.",
-						"five"
-					]
 				}
 			]
 		}
@@ -206,15 +198,15 @@
 			"languageModel": {
 				"intents": [
 					{
-						"name": "AMAZON.CancelIntent",
+						"name": "AMAZON.StopIntent",
 						"samples": []
-					},
-					{
-						"name": "AMAZON.HelpIntent",
-						"samples": []
-					},
+                    },
 					{
 						"name": "AMAZON.PauseIntent",
+						"samples": []
+					},
+					{
+						"name": "AMAZON.CancelIntent",
 						"samples": []
 					}
 				]

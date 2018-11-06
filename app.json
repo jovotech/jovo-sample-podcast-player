@@ -15,10 +15,11 @@
 			}
 		}
 	},
-	"endpoint": "https://webhook.jovo.cloud/ed7c57e3-a03b-4806-9f8d-5398aa8398d3",
 	"googleAction": {
-		"nlu": {
-			"name": "dialogflow"
+		"dialogflow": {
+			"projectId": "<your-project-id>",
+			"keyFile": "<path-to-key-file>"
 		}
-	}
+	},
+	"endpoint": "${JOVO_WEBHOOK_URL}"
 }

@@ -1,99 +1,54 @@
-const Player = require('../player');
-const Util = require('../util');
-const Episodes = require('../episodes.json');
+const Player = require('../player.js');
 
 module.exports = {
-    /**
-     * TODO
-     * add built in intents (https://developer.amazon.com/docs/custom-skills/audioplayer-interface-reference.html#intents) and tell user that
-     * they are not implemented in this skill
-     */
-    'FirstEpisodeIntent': function() {
-        // User wants to listen to the first episode
-        let episode = Player.getFirstEpisode();
-        Player.alexaPlay.call(this, 0, episode, 'token');
+    'AMAZON.CancelIntent': function() {
+        this.tell('Alright, see you next time!');
     },
-    'ListIntent': function() {
-        /**
-         * User wants to choose from a list
-         * Create copy of list and shuffle it using the Fisher Yates shuffle (https://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array)
-         * save copied & shuffled arr to DB to know which one the user chose in the 'ChooseFromListIntent'
-         */
-        let speech = this.speechBuilder().addT('LIST_EPISODES');
-        let episodes = Episodes.slice(0, Episodes.length - 1);
-        episodes = Util.shuffle(episodes);
-        let episodesToSave = [];
-        for (let i = 0; i < Util.EPISODES_TO_LIST; i++) {
-            speech.addSayAsOrdinal(`${i + 1}`).addText(episodes[i].title).addBreak("100ms");
-            episodesToSave.push(episodes[i]);
-        }
-        speech.addT('CHOOSE_EPISODE');
-        this.user().data.episodeList = episodesToSave;
-        this.ask(speech);
+    'AMAZON.PauseIntent': function() {
+        this.alexaSkill().audioPlayer().stop();
+        this.endSession();
     },
-    'ChooseFromListIntent': function (ordinal) {
-        let episode = this.user().data.episodeList[ordinal.key - 1]; // First is saved at index 0 and so on
-        Player.alexaPlay.call(this, 0, episode, 'token').endSession();
+    'AMAZON.LoopOffIntent': function() {
+        this.tell('Not implemented');
     },
-    'AMAZON.ResumeIntent': function () {
-        let episode = this.user().data.currentEpisode;
-        Player.alexaPlay.call(this, this.user().data.offset, episode, 'token').endSession();
+    'AMAZON.LoopOnIntent': function() {
+        this.tell('Not implemented');
     },
-    'AMAZON.NextIntent': function() {
-        let currentEpisode = this.user().data.currentEpisode;
-        let episode = Player.getNextEpisode(currentEpisode);
-        if (episode) {
-            Player.alexaPlay.call(this, 0, episode, 'token').endSession();
-        }
-        else {
-            this.tell(this.t('LAST_EPISODE'));
-        }
+    'AMAZON.LoopOffIntent': function() {
+        this.tell('Not implemented');
     },
-    'AMAZON.PreviousIntent': function() {
-        let currentEpisode = this.user().data.currentEpisode;
-        let episode = Player.getPreviousEpisode(currentEpisode);
-        if (episode) {
-            Player.alexaPlay.call(this, 0, episode, 'token').endSession();
-        }
-        else {
-            this.tell(this.t('FIRST_EPISODE'));
-        }
+    'AMAZON.RepeatIntent': function() {
+        this.tell('Not implemented');
+    },
+    'AMAZON.ShuffleOffIntent': function() {
+        this.tell('Not implemented');
+    },
+    'AMAZON.ShuffleOnIntent': function() {
+        this.tell('Not implemented');
     },
     'AMAZON.StartOverIntent': function() {
-        let episode = this.user().data.currentEpisode;
-        Player.alexaPlay.call(this, 0, episode, 'token').endSession();
-    },
-    'AMAZON.PauseIntent': function () {
-        this.alexaSkill().audioPlayer().stop();
-        this.tell(this.t('PAUSE'));
-    },
-    'AMAZON.StopIntent': function() {
-        this.alexaSkill().audioPlayer().stop();
-        this.tell(this.t('PAUSE'));
-    },
-    'AMAZON.CancelIntent': function() {
-        this.alexaSkill().audioPlayer().stop();
-        this.tell(this.t('PAUSE'));
+        this.tell('Not implemented');
     },
     'AUDIOPLAYER': {
         'AudioPlayer.PlaybackStarted': function() {
             this.endSession();
         },
         'AudioPlayer.PlaybackNearlyFinished': function() {
-            // Enqueue next episode and save epsiode object to DB
-            let episode = Player.getNextEpisode.call(this);
+            let index = this.user().data.currentIndex;
+            let episode = Player.getNextEpisode(index);
             if (episode) {
-                this.user().data.nextEpisode = episode;
-                this.alexaSkill().audioPlayer().setExpectedPreviousToken('token').enqueue(episode.uri, 'token');
+                this.alexaSkill().audioPlayer().setExpectedPreviousToken('token').enqueue(episode.url, 'token');
+            } else {
+                this.endSession();
             }
         },
-
         'AudioPlayer.PlaybackFinished': function() {
-            this.user().data.currentEpisode = this.user().data.nextEpisode;
-            delete this.user().data.nextEpisode;
+            let currentIndex = this.user().data.currentIndex;
+            if (currentIndex > 0) {
+                this.user().data.currentIndex = currentIndex - 1;
+            }
             this.endSession();
         },
-
         'AudioPlayer.PlaybackStopped': function() {
             this.user().data.offset = this.alexaSkill().audioPlayer().getOffsetInMilliseconds();
             this.endSession();
@@ -101,23 +56,5 @@ module.exports = {
         'AudioPlayer.PlaybackFailed': function() {
             this.endSession();
         }
-    },
-    'AMAZON.LoopOffIntent': function() {
-        this.tell(this.t('NOT_IMPLEMENTED'));
-    },
-    'AMAZON.LoopOnIntent': function() {
-        this.tell(this.t('NOT_IMPLEMENTED'));
-    },
-    'AMAZON.LoopOffIntent': function() {
-        this.tell(this.t('NOT_IMPLEMENTED'));
-    },
-    'AMAZON.RepeatIntent': function() {
-        this.tell(this.t('NOT_IMPLEMENTED'));
-    },
-    'AMAZON.ShuffleOffIntent': function() {
-        this.tell(this.t('NOT_IMPLEMENTED'));
-    },
-    'AMAZON.ShuffleOnIntent': function() {
-        this.tell(this.t('NOT_IMPLEMENTED'));
-    },
+    }
 }

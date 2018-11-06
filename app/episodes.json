@@ -1,26 +1,22 @@
 [
     {
         "title": "Episode Five",
-        "uri": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
+        "url": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
     },
     {
         "title": "Episode Four",
-        "uri": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
+        "url": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
     },
     {
         "title": "Episode Three",
-        "uri": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
+        "url": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
     },
     {
         "title": "Episode Two",
-        "uri": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
+        "url": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
     },
     {
         "title": "Episode One",
-        "uri": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
-    },
-    {
-        "title": "Intro",
-        "uri": "https://s3.amazonaws.com/audio.test.5/FREE+-+INTRO.mp3"
+        "url": "https://s3.amazonaws.com/jovo-songs/song1.mp3"
     }
 ]
