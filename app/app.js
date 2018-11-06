@@ -37,24 +37,26 @@ app.setHandler({
     },
     'FirstEpisodeIntent': function() {
         let episode = Player.getFirstEpisode();
-        this.user().data.currentIndex = Player.getEpisodeIndex(episode);
+        let currentIndex = Player.getEpisodeIndex(episode);
+        this.user().data.currentIndex = currentIndex
         if (this.isAlexaSkill()) {
-            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(episode.url, 'token');
+            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
             this.endSession();
         } else if (this.isGoogleAction()) {
-            this.googleAction().audioPlayer().play(episode.url, 'episode');
+            this.googleAction().audioPlayer().play(episode.url, episode.title);
             this.googleAction().showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }
     },
     'LatestEpisodeIntent': function() {
         let episode = Player.getLatestEpisode();
-        this.user().data.currentIndex = Player.getEpisodeIndex(episode);
+        let currentIndex = Player.getEpisodeIndex(episode);
+        this.user().data.currentIndex = currentIndex;
         if (this.isAlexaSkill()) {
-            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(episode.url, 'token');
+            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${currentIndex}`);
             this.endSession();
         } else if (this.isGoogleAction()) {
-            this.googleAction().audioPlayer().play(episode.url, 'episode');
+            this.googleAction().audioPlayer().play(episode.url, episode.title);
             this.googleAction().showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }
@@ -78,25 +80,25 @@ app.setHandler({
         let episode = Player.getEpisode(episodeIndex);
     
         if (this.isAlexaSkill()) {
-            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(episode.url, 'token');
+            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(episode.url, `${episodeIndex}`);
             this.endSession();
         } else if (this.isGoogleAction()) {
-            this.googleAction().audioPlayer().play(episode.url, 'episode');
+            this.googleAction().audioPlayer().play(episode.url, episode.title);
             this.googleAction().showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }
     },
 
     'ResumeIntent': function () {
-        let episodeIndex = this.user().data.currentIndex;
-        let episode = Player.getEpisode(episodeIndex);
+        let currentIndex = this.user().data.currentIndex;
+        let episode = Player.getEpisode(currentIndex);
     
         if (this.isAlexaSkill()) {
             let offset = this.user().data.offset;
-            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(offset).play(episode.url, 'token');
+            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(offset).play(episode.url, `${currentIndex}`);
             this.endSession();
         } else if (this.isGoogleAction()) {
-            this.googleAction().audioPlayer().play(episode.url, 'episode');
+            this.googleAction().audioPlayer().play(episode.url, episode.title);
             this.googleAction().showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }
@@ -108,12 +110,13 @@ app.setHandler({
             this.tell('That was the most recent episode. You have to wait until a new episode gets released.');
             return;
         }
-        this.user().data.currentIndex = Player.getEpisodeIndex(nextEpisode);
+        currentIndex = Player.getEpisodeIndex(nextEpisode);
+        this.user().data.currentIndex = currentIndex;
         if (this.isAlexaSkill()) {
-            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(nextEpisode.url, 'token');
+            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
             this.endSession();
         } else if (this.isGoogleAction()) {
-            this.googleAction().audioPlayer().play(nextEpisode.url, 'episode');
+            this.googleAction().audioPlayer().play(nextEpisode.url, nextEpisode.title);
             this.googleAction().showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }
@@ -125,12 +128,13 @@ app.setHandler({
             this.tell('You are already at the oldest episode.');
             return;
         }
-        this.user().data.currentIndex = Player.getEpisodeIndex(previousEpisode);
+        currentIndex = Player.getEpisodeIndex(previousEpisode);
+        this.user().data.currentIndex = currentIndex;
         if (this.isAlexaSkill()) {
-            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(previousEpisode.url, 'token');
+            this.alexaSkill().audioPlayer().setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
             this.endSession();
         } else if (this.isGoogleAction()) {
-            this.googleAction().audioPlayer().play(previousEpisode.url, 'episode');
+            this.googleAction().audioPlayer().play(previousEpisode.url, previousEpisode.title);
             this.googleAction().showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }

@@ -34,10 +34,11 @@ module.exports = {
             this.endSession();
         },
         'AudioPlayer.PlaybackNearlyFinished': function() {
-            let index = this.user().data.currentIndex;
+            let currentIndex = this.user().data.currentIndex;
             let episode = Player.getNextEpisode(index);
+            let nextIndex = Player.getEpisodeIndex(episode);
             if (episode) {
-                this.alexaSkill().audioPlayer().setExpectedPreviousToken('token').enqueue(episode.url, 'token');
+                this.alexaSkill().audioPlayer().setExpectedPreviousToken(`${currentIndex}`).enqueue(episode.url, `${nextIndex}`);
             } else {
                 this.endSession();
             }

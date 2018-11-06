@@ -7,7 +7,7 @@ module.exports = {
             let episode = Player.getNextEpisode(index);
             if (episode) {
                 this.user().data.currentIndex -= 1;
-                this.googleAction().audioPlayer().play(episode.url, 'episode one');
+                this.googleAction().audioPlayer().play(episode.url, episode.title);
                 this.googleAction().showSuggestionChips(['pause', 'start over']);
                 this.ask('Enjoy');
             } else {
