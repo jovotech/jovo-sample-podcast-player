@@ -1,0 +1,161 @@
+{
+	"interactionModel": {
+		"languageModel": {
+			"invocationName": "my podcast player",
+			"types": [
+				{
+					"name": "ordinal",
+					"values": [
+						{
+							"id": null,
+							"name": {
+								"value": "1",
+								"synonyms": [
+									"first",
+									"1st",
+									"1.",
+									"one"
+								]
+							}
+						},
+						{
+							"id": null,
+							"name": {
+								"value": "2",
+								"synonyms": [
+									"second",
+									"2nd",
+									"2.",
+									"two"
+								]
+							}
+						},
+						{
+							"id": null,
+							"name": {
+								"value": "3",
+								"synonyms": [
+									"third",
+									"3rd",
+									"3.",
+									"three"
+								]
+							}
+						},
+						{
+							"id": null,
+							"name": {
+								"value": "4",
+								"synonyms": [
+									"fourth",
+									"4th",
+									"4.",
+									"four"
+								]
+							}
+						}
+					]
+				}
+			],
+			"intents": [
+				{
+					"name": "AMAZON.NextIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.PreviousIntent",
+					"samples": []
+				},
+				{
+					"name": "LatestEpisodeIntent",
+					"samples": [
+						"latest episode",
+						"new episode",
+						"the latest episode",
+						"the new episode",
+						"I want the latest episode",
+						"I want to listen to the latest episode",
+						"I would prefer the latest one",
+						"play the latest episode",
+						"play the new episode",
+						"I would like to listen to the latest episode",
+						"stream the latest episode",
+						"stream the new episode"
+					]
+				},
+				{
+					"name": "FirstEpisodeIntent",
+					"samples": [
+						"episode one",
+						"I want episode one",
+						"play episode one",
+						"start with episode one",
+						"I want to listen to the first episode"
+					]
+				},
+				{
+					"name": "ChooseFromListIntent",
+					"samples": [
+						"{ordinal}",
+						"{ordinal} one please",
+						"{ordinal} one",
+						"{ordinal} episode",
+						"Play the {ordinal}",
+						"Play the {ordinal} one",
+						"Play the {ordinal} episode",
+						"Play the {ordinal} one",
+						"Play the {ordinal} episode",
+						"I want the {ordinal} one",
+						"I choose the {ordinal} one",
+						"I want the {ordinal} episode",
+						"I choose the {ordinal} episode",
+						"stream the {ordinal} one"
+					],
+					"slots": [
+						{
+							"name": "ordinal",
+							"type": "ordinal"
+						}
+					]
+				},
+				{
+					"name": "ListIntent",
+					"samples": [
+						"list episodes",
+						"list the episodes",
+						"I want the list",
+						"I want the list of episodes",
+						"episode list",
+						"Can I get the list of episodes",
+						"Can I have the episode list",
+						"choose from a list",
+						"choose from list",
+						"I choose the list",
+						"choose list",
+						"list of episodes"
+					]
+				},
+				{
+					"name": "AMAZON.ResumeIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.HelpIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.StopIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.PauseIntent",
+					"samples": []
+				},
+				{
+					"name": "AMAZON.CancelIntent",
+					"samples": []
+				}
+			]
+		}
+	}
+}

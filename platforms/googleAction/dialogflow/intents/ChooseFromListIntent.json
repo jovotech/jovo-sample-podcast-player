@@ -1,0 +1,17 @@
+{
+	"name": "ChooseFromListIntent",
+	"auto": true,
+	"webhookUsed": true,
+	"responses": [
+		{
+			"parameters": [
+				{
+					"isList": false,
+					"name": "ordinal",
+					"value": "$ordinal",
+					"dataType": "@ordinal"
+				}
+			]
+		}
+	]
+}
