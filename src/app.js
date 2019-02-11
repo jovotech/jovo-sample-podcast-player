@@ -31,9 +31,11 @@ app.setHandler({
     NEW_USER() {
         return this.ask('Would you like to begin listening from episode one or rather choose from a list?');
     },
+
     LAUNCH() {
         return this.ask('Would you like to resume where you left off or listen to the latest episode?');
     },
+
     FirstEpisodeIntent() {
         let episode = Player.getFirstEpisode();
         let currentIndex = Player.getEpisodeIndex(episode);
@@ -46,6 +48,7 @@ app.setHandler({
             this.ask('Enjoy');
         }
     },
+
     LatestEpisodeIntent() {
         let episode = Player.getLatestEpisode();
         let currentIndex = Player.getEpisodeIndex(episode);
@@ -58,6 +61,7 @@ app.setHandler({
             this.ask('Enjoy');
         }
     },
+
     ListIntent() {
         const indices = Player.getRandomIndices(4);
         this.$session.$data.episodeIndices = indices;
@@ -70,6 +74,7 @@ app.setHandler({
         this.$speech.addText('Which one would you like to listen to?');
         this.ask(this.$speech);
     },
+
     ChooseFromListIntent() {
         const ordinal = this.$inputs.ordinal;
         let episodeIndices = this.$session.$data.episodeIndices;
@@ -85,6 +90,7 @@ app.setHandler({
             this.ask('Enjoy');
         }
     },
+
     ResumeIntent() {
         let currentIndex = this.$user.$data.currentIndex;
         let episode = Player.getEpisode(currentIndex);
@@ -98,6 +104,7 @@ app.setHandler({
             this.ask('Enjoy');
         }
     },
+
     NextIntent() {
         let currentIndex = this.$user.$data.currentIndex;
         let nextEpisode = Player.getNextEpisode(currentIndex);
@@ -114,6 +121,7 @@ app.setHandler({
             this.ask('Enjoy');
         }
     },
+
     PreviousIntent() {
         let currentIndex = this.$user.$data.currentIndex;
         let previousEpisode = Player.getPreviousEpisode(currentIndex);
@@ -130,6 +138,7 @@ app.setHandler({
             this.ask('Enjoy');
         }
     },
+
     HelpIntent() {
         this.ask('You can either listen to episode one or the latest episode or choose from a random list of episodes. Which one would you like to do?');
     }
