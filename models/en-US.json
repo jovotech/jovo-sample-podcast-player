@@ -1,5 +1,5 @@
 {
-	"invocation": "my test app",
+	"invocation": "my podcast player",
 	"intents": [
 		{
 			"name": "NextIntent",
