@@ -53,7 +53,7 @@ app.setHandler({
                 .play(episode.url, `${currentIndex}`)
                 .tell(this.$speech);
         } else if (this.isGoogleAction()) {
-            this.$googleAction.$audioPlayer.play(episode.url, episode.title);
+            this.$googleAction.$mediaResponse.play(episode.url, episode.title);
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
             this.ask(this.$speech);
         }
@@ -71,7 +71,7 @@ app.setHandler({
                 .play(episode.url, `${currentIndex}`)
                 .tell(this.$speech);
         } else if (this.isGoogleAction()) {
-            this.$googleAction.$audioPlayer.play(episode.url, episode.title);
+            this.$googleAction.$mediaResponse.play(episode.url, episode.title);
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
             this.ask(this.$speech);
         }
@@ -106,7 +106,7 @@ app.setHandler({
                 .play(episode.url, `${episodeIndex}`)
                 .tell(this.$speech);
         } else if (this.isGoogleAction()) {
-            this.$googleAction.$audioPlayer.play(episode.url, episode.title);
+            this.$googleAction.$mediaResponse.play(episode.url, episode.title);
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
             this.ask(this.$speech);
         }
@@ -124,7 +124,7 @@ app.setHandler({
                 .play(episode.url, `${currentIndex}`)
                 .tell(this.$speech);
         } else if (this.isGoogleAction()) {
-            this.$googleAction.$audioPlayer.play(episode.url, episode.title);
+            this.$googleAction.$mediaResponse.play(episode.url, episode.title);
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
             this.ask(this.$speech);
         }
@@ -141,7 +141,7 @@ app.setHandler({
         if (this.isAlexaSkill()) {
             this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(nextEpisode.url, `${currentIndex}`);
         } else if (this.isGoogleAction()) {
-            this.$googleAction.$audioPlayer.play(nextEpisode.url, nextEpisode.title);
+            this.$googleAction.$mediaResponse.play(nextEpisode.url, nextEpisode.title);
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }
@@ -158,7 +158,7 @@ app.setHandler({
         if (this.isAlexaSkill()) {
             this.$alexaSkill.$audioPlayer.setOffsetInMilliseconds(0).play(previousEpisode.url, `${currentIndex}`);
         } else if (this.isGoogleAction()) {
-            this.$googleAction.$audioPlayer.play(previousEpisode.url, previousEpisode.title);
+            this.$googleAction.$mediaResponse.play(previousEpisode.url, previousEpisode.title);
             this.$googleAction.showSuggestionChips(['pause', 'start over']);
             this.ask('Enjoy');
         }
