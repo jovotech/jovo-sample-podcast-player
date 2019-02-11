@@ -16,14 +16,9 @@ module.exports = {
             }
          }
       },
-      askProfile: 'private'
    },
    googleAction: {
       nlu: 'dialogflow',
-      dialogflow: {
-         projectId: 'podcastplayerv2',
-         keyFile: './podcastplayerv2-d8653908d202.json'
-      }
    },
    endpoint: '${JOVO_WEBHOOK_URL}',
 };
