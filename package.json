@@ -1,7 +1,7 @@
 {
   "name": "jovo-sample-podcast-player",
   "version": "2.0.2",
-  "description": "A sample voice app that works with the Jovo Framework",
+  "description": "Sample Podcast Player App for Amazon Alexa and Google Assistant",
   "main": "src/index.js",
   "dependencies": {
     "jovo-db-filedb": "^2.0.2",
