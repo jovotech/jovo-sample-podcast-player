@@ -169,6 +169,11 @@ app.setHandler({
             .addText('Which one would you like to do?')
 
         this.ask(this.$speech);
+    },
+    
+    Unhandled() {
+        this.$speech.addText('I cannot understand you.')
+        return this.toIntent('HelpIntent');
     }
 });
 
